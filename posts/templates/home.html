@@ -1,0 +1,8 @@
+<h1>Post</h1>
+<ul>
+{% for post in object_list %} <!-- object_list is the query set, all the blog  posts -->
+  <li>  {{ post.title }} - {{ post.author.first_name }} 
+    {{ post.author.last_name }}<br/>
+    {{ post.body }} </li>
+{% endfor %}
+</ul>

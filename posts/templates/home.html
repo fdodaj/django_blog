@@ -7,9 +7,13 @@
 <h1>Posts</h1>
 <ul>
 {% for post in object_list %} <!-- object_list is the query set, all the blog  posts -->
-  <li> <a href="{% url 'post-detail' post.pk %}"> {{ post.title }} </a> - {{ post.author.first_name }} 
-    {{ post.author.last_name }}<br/>
-    {{ post.body }} </li>
+  <li> <a href="{% url 'post-detail' post.pk %}"> {{ post.title }} </a>-
+     {{ post.author.first_name }} 
+     {{ post.author.last_name }}  -
+         <a href="{% url 'update_post' post.pk %}">(edit)</a> 
+         <a href="{% url 'delete_post' post.pk %}">(delete)</a> <br>
+     
+    {{ post.body }}<br/><br><hr> </li>
 {% endfor %}
 </ul>
 

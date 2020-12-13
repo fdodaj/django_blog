@@ -11,7 +11,7 @@
     {% csrf_token %} #cros site request forgery
 
     {{ form.as_p }}
-    <button class="btn btn-secondary" >Post</button> 
-     <br><a href="{% url 'home' %}">Back</a>
+    <button >Post</button> 
+        | <a href="{% url 'home' %}">Back</a>
 
 {% endblock %}

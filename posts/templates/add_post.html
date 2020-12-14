@@ -3,7 +3,7 @@
 
 {% block content %}
     
-
+{% if user.is_authenticated %}
 
 <h1>Add  Post</h1>
 <br><br>
@@ -13,5 +13,10 @@
     {{ form.as_p }}
     <button >Post</button> 
         | <a href="{% url 'home' %}">Back</a>
+
+{% else %}
+YOU MUST LOG IN TO ADd POSTS
+
+{% endif %}
 
 {% endblock %}

@@ -4,7 +4,7 @@
 {% block content %}
     
 
-
+{% if user.is_authenticated %}
 <h1>Update post</h1>
 <br><br>
 <form method="POST">
@@ -14,5 +14,14 @@
     <button  >Update</button>
 
     <a href="{% url 'home' %}">Back</a>
+
+{% else %}
+YOU MUST LOGIN IN TO SEE THIS PAGE <br>
+
+<a href="{% url 'home' %}">Back</a>
+
+
+
+{% endif %}
 
 {% endblock %}

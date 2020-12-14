@@ -3,7 +3,7 @@
 
 {% block content %}
     
-
+{% if user.is_authenticated %}
 
 <h1>Delete post</h1>
 <br><br>
@@ -17,5 +17,9 @@
 
 </div>
 
+{% else %}
+YOU MUST LOG IN TO DELETE A POST
+
+{% endif %}
 
 {% endblock %}

@@ -19,12 +19,23 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'add_post' %}">Add post</a>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log out</a> 
+
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'register' %}">Sign up</a>
+             <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Log In</a> 
+
+              {%  endif %}
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'add_post' %}">Add post</a>
-              
-            </ul>
+             </ul>
           </div>
         </div>
       </nav>

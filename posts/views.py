@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['post_date']
+    ordering = ['-post_date']
 
 class PostDetail(DetailView):
     model = Post
@@ -17,6 +17,7 @@ class AddPost(CreateView):
     model = Post
     template_name = 'add_post.html'
     fields = '__all__' # allows me to put all as fileds
+    success_url = reverse_lazy('home')
 
 class UpdatePost(UpdateView):
     model = Post

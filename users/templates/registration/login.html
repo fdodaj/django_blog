@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+
+<h1>Login</h1>
+<br><br>
+<form method="POST">
+    {% csrf_token %} #cros site request forgery
+
+    {{ form.as_p }}
+    <button >Log in</button> 
+        | <a href="{% url 'home' %}"></a>
+
+{% endblock %}

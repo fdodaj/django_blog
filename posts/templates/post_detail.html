@@ -3,17 +3,36 @@
 {% block content %}
 
 
-<p>{{ post.title }} • {{ post.author.id}}</p>
+<p>{{ post.title }} </p>
 {{ post.author }} •
 {{ post.post_date }}
-{% if user.is_authenticated %}
+{% if user.is_authenticated %} 
 {% if user.id == post.author.id %}
 <a href="{% url 'update_post' post.pk %}">(edit)</a>
 <a href="{% url 'delete_post' post.pk %}">(delete)</a> <br>
 {% endif %}
 {% endif %}
 <hr>
-{{ post.body}}
+{{ post.body}} <br>
+----------------------------------------------
+
+<h4>Comments </h4>
+
+{% if not post.comments.all %}
+     0 comments. • <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> <hr>
+{% else %}
+    <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> 
+    {% for comment in post.comments.all %}
+    <hr><br>{{ comment.name }} •
+        {{ comment.date_added }} 
+        <br>
+        {{ comment.body }}
+    {% endfor %}
+{% endif %}
+
+
+
+
 
 <br><br>
 

@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+<h1>Add  Comment</h1>
+<br><br>
+<form method="POST">
+    {% csrf_token %} 
+
+    {{ form.as_p }}
+    <button >Add comment</button> 
+     <a href="{% url 'home' %}">Back</a>
+
+{% endblock %}

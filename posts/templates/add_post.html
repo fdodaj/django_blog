@@ -8,14 +8,19 @@
 <h1>Add  Post</h1>
 <br><br>
 <form method="POST">
-    {% csrf_token %} #cros site request forgery
+    {% csrf_token %} 
 
     {{ form.as_p }}
     <button >Post</button> 
         | <a href="{% url 'home' %}">Back</a>
 
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("authorID").value = name;
+    </script>
+
 {% else %}
-YOU MUST LOG IN TO ADd POSTS
+YOU MUST LOG IN TO ADD Posts
 
 {% endif %}
 

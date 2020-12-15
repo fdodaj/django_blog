@@ -1,27 +1,31 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
-    
+
 
 {% if user.is_authenticated %}
+
+{% if user.id == post.author.id %}
 <h1>Update post</h1>
 <br><br>
 <form method="POST">
-    {% csrf_token %} #cros site request forgery
+    {% csrf_token %}
 
     {{ form.as_p }}
-    <button  >Update</button>
+    <button>Update</button>
+
+    <a href="{% url 'home' %}">Back</a>
+    {% else %}
+    YOU MUST LOGIN IN TO SEE THIS PAGE <br>
+
+    {% endif %}
+    {% else %}
+    YOU MUST LOGIN IN TO SEE THIS PAGE <br>
 
     <a href="{% url 'home' %}">Back</a>
 
-{% else %}
-YOU MUST LOGIN IN TO SEE THIS PAGE <br>
-
-<a href="{% url 'home' %}">Back</a>
 
 
+    {% endif %}
 
-{% endif %}
-
-{% endblock %}
+    {% endblock %}

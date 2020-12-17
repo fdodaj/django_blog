@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView , CreateView , UpdateView, DeleteView# ListView - Allows me to list a query set into the database, detailView - brings one record only
+from django.shortcuts import render, HttpResponse
+from django.views.generic import ListView, DetailView , CreateView , UpdateView, DeleteView # ListView - Allows me to list a query set into the database, detailView - brings one record only
 from .models import Post, Comment
 from django.urls import reverse_lazy
 from .forms import PostForm , CommentForm
+from django.http import HttpResponse
 
 #class views
 class HomeView(ListView):
@@ -44,4 +45,5 @@ class AddComment(CreateView):
         return super().form_valid(form) 
 
     success_url = reverse_lazy('home')
-    
+
+

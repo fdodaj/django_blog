@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 virt/
+media/
 
 *.pyc
 */__pycache__/

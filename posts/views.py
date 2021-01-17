@@ -8,7 +8,7 @@ from .forms import PostForm , CommentForm
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['post_date']
+    ordering = ['-post_date']
 
 class PostDetail(DetailView):
     model = Post

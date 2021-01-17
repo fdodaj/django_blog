@@ -14,7 +14,13 @@
 {% endif %}
 <hr>
 {{ post.body }} <br> <br> <br> 
-<img style="height:500px; widows: 500px; " src="{{ post.post_image.url }}" alt="">   <br> <br> <br>
+{% if post.post_image %}
+<img style="height:500px; widows: 500px; " src="{{ post.post_image.url }}" alt=""> 
+{% else %}
+<p></p>
+{% endif %}
+
+  <br> <br> <br>
  
 ----------------------------------------------
 

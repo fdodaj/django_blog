@@ -58,6 +58,7 @@ class UpdatePost(UpdateView):
     fields = ['title', 'body']
     success_url = reverse_lazy('home')
 
+
 class DeletePost(DeleteView):
     model= Post
     template_name = 'delete_post.html'
@@ -67,11 +68,14 @@ class AddComment(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'add_comment.html'
-    
+    success_url = reverse_lazy('home')
+   
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form) 
+       
+       
 
-    success_url = reverse_lazy('home')
+    
     

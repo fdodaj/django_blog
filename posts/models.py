@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime , date
 from django import forms
+from django.db.models import Count
 
 
 class Post(models.Model):
@@ -12,6 +13,9 @@ class Post(models.Model):
     body = models.TextField()
     post_date = models.DateField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='blog_posts')
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.title + ' | '  + str(self.author)

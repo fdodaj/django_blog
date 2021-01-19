@@ -45,5 +45,14 @@
 <br><br>
 
 <a href="{% url 'home' %}">Back</a>
+<br/> <br/> <br/>
+ <hr/>
+ <form action="{% url 'like_post' post.pk %}" method="POST">
+
+    {% csrf_token %}
+    <button type="submit", name='post_id', value="{{ post.id }}", class="btn btn-primary btn-sm">like </button> 
+    - {{ total_likes }} likes
+    <!-- <button type="submit" name="post_id" value="{{ object.id }}" class="btn btn-info">Like</button> -->
+ </form>
 
 {% endblock %}

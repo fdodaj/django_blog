@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .views import HomeView, PostDetail, AddPost, UpdatePost, DeletePost, AddComment 
+from .views import HomeView, PostDetail, AddPost, UpdatePost, DeletePost, AddComment , LikeView
 from django.urls import path
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
    path('posts/edit/<int:pk>', UpdatePost.as_view(), name='update_post'),
    path('posts/<int:pk>/delete', DeletePost.as_view(), name='delete_post'),
    path('add_post/<int:pk>/comment', AddComment.as_view(), name='add_comment'),
+   path('post-like/<int:pk>', LikeView, name="like_post"),
 ]

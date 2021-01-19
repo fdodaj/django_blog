@@ -22,7 +22,7 @@
 
   <br> <br> <br>
  
-----------------------------------------------
+------------------------------------------------------------------------------------------------
 
 <h4>Comments </h4>
 
@@ -48,11 +48,28 @@
 <br/> <br/> <br/>
  <hr/>
  <form action="{% url 'like_post' post.pk %}" method="POST">
-
-    {% csrf_token %}
-    <button type="submit", name='post_id', value="{{ post.id }}", class="btn btn-primary btn-sm">like </button> 
-    - {{ total_likes }} likes
-    <!-- <button type="submit" name="post_id" value="{{ object.id }}" class="btn btn-info">Like</button> -->
+    {% if user.is_authenticated %} 
+        {% csrf_token %}
+        
+        {% if liked %}
+            <button type="submit", name='post_id', value="{{ post.id }}", class="btn btn-danger btn-sm">Unlike </button> 
+        {% else %}    
+            <button type="submit", name='post_id', value="{{ post.id }}", class="btn btn-primary btn-sm">like </button>     
+        {% endif %}
+    {% else %}
+    <small> You must be logged in to like a post! </small> 
+    <br/>
+    <a aria-current="page" href="{% url 'login' %}">Log In</a>  • 
+    <a aria-current="page" href="{% url 'register' %}">Sign up</a>
+    {% endif %} 
+    <br/>
+    <br/>
+    
+    • {{ total_likes }} likes
+    
  </form>
 
+ <br/>
+    <br/>
+    <br/>
 {% endblock %}

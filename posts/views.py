@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.db.models import Count
 from django.views.generic import ListView, DetailView , CreateView , UpdateView, DeleteView  # ListView - Allows me to list a query set into the database, detailView - brings one record only
 from .models import Post, Comment
 from django.urls import reverse_lazy, reverse
@@ -23,6 +24,11 @@ class HomeView(ListView):
     model = Post
     template_name = 'home.html'
     ordering = ['-post_date']
+
+class Suggest(ListView):
+    Post.objects.annotate(like_count=Count('likes')).order_by('-like_count')
+    template_name = 'home.html'
+    context_object_name = 'post_list' # Providing a useful context_object_name is always a good idea
 
 class PostDetail(DetailView):
     model = Post

@@ -17,7 +17,6 @@ def LikeView(request, pk):
     else:
         post.likes.add(request.user)
         liked = True
-
     return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
 class HomeView(ListView):
@@ -26,7 +25,7 @@ class HomeView(ListView):
     ordering = ['-post_date']
 
 class Suggest(ListView):
-    Post.objects.annotate(like_count=Count('likes')).order_by('-like_count')
+    queryset = Post.objects.annotate(like_count=Count('likes')).order_by('like_count')
     template_name = 'home.html'
     context_object_name = 'post_list' # Providing a useful context_object_name is always a good idea
 

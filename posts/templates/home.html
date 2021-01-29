@@ -37,36 +37,13 @@
 </div>
 
 <div style="width: 20%; float:right; padding:20px; border:0.5px solid rgb(0, 0, 0)">
- 
-  <ul>
-  
-    {% for post in object_list %}
-    <!-- object_list is the query set, all the blog  posts -->
-    <li> <a href="{% url 'post-detail' post.pk %}"> {{ post.title }} </a> • by {{ post.author }} • {{ post.post_date }}
-  
-      {% if user.is_authenticated %}
-      {% if user.id == post.author.id %}
-      •
-      <a href="{% url 'update_post' post.pk %}">(edit)</a>
-      <a href="{% url 'delete_post' post.pk %}">(delete)</a>
-  
-  
-      {% endif %}
-  
-      {% endif %}
-      <br>
-      {{ post.body|slice:"0:100" }}...<br /><br>
-      {{ body }}
-      <hr>
-      
-      </li>
-    </li>
-  
-  
-  
-    {% endfor %}
+  <h3>Suggested</h3>
+  {% for post in post_list %}  
+  <li> <a href="{% url 'post-detail' post.pk %}"> {{ post.title }} </a> • by {{ post.author }} • {{ post.post_date }} <br/> <hr/>
+
+  {% endfor %}
 </div>
-  
+
 
 </div>
   {% endblock %}

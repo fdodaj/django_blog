@@ -25,17 +25,33 @@
 ------------------------------------------------------------------------------------------------
 
 <h4>Comments </h4>
+{% for comment in post.comments.all %}
+        <hr><br>{{ comment.name }} •
+            {{ comment.date_added }} 
+            <br>
+            {{ comment.body }}
+        {% endfor %}
 
-{% if not post.comments.all %}
-     0 comments. • <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> <hr>
+{% if user.is_authenticated %} 
+ 
+
+    {% if not post.comments.all %}
+        0 comments. •  <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> <hr>
+    {% else %}
+        <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> 
+       
+    {% endif %}
+
 {% else %}
-    <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> 
-    {% for comment in post.comments.all %}
-    <hr><br>{{ comment.name }} •
-        {{ comment.date_added }} 
-        <br>
-        {{ comment.body }}
-    {% endfor %}
+<br/>
+<br/>
+<br/>
+
+<small> You must be logged in to add a cooment! </small> 
+<br/>
+    <a aria-current="page" href="{% url 'login' %}">Log In</a>  • 
+    <a aria-current="page" href="{% url 'register' %}">Sign up</a>
+<br/>
 {% endif %}
 
 
@@ -69,7 +85,11 @@
     
  </form>
 
- <br/>
-    <br/>
-    <br/>
+<br/>
+<br/>
+<br/>
+
+
+
+
 {% endblock %}

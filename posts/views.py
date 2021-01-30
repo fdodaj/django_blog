@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count
 from django.views.generic import ListView, DetailView , CreateView , UpdateView, DeleteView  # ListView - Allows me to list a query set into the database, detailView - brings one record only
-from .models import Post, Comment
+from .models import Post, Comment, Report
 from django.urls import reverse_lazy, reverse
 from .forms import PostForm , CommentForm
 from django.http import HttpResponseRedirect
@@ -80,7 +80,7 @@ class AddComment(CreateView):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form) 
        
-       
+ 
 
     
     

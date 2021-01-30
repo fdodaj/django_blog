@@ -31,3 +31,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
+
+class Report(models.Model):
+    post = models.ForeignKey(Post, related_name='reports', on_delete=models.CASCADE)
+    name = models.CharField(max_length=225)
+    body = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+  
+
+    

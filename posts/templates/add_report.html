@@ -4,18 +4,18 @@
 {% block content %}
     
 
-<h1>Add  Comment</h1>
+<h1>Add  Report</h1>
 <br><br>
 <form method="POST">
     {% csrf_token %} 
 
     {{ form.as_p }}
-    <button >Add comment</button> 
+    <button >Report</button> 
      <a href="{% url 'home' %}">Back</a>
 
      <script>
-        var name = "{{ user.id }}";
-        document.getElementById("authorID").value = name;
-    </script>
+      var name = "{{ user.id }}";
+      document.getElementById("authorID").value = name;
+  </script>
 
 {% endblock %}

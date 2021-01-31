@@ -3,7 +3,7 @@ from django.db.models import Count
 from django.views.generic import ListView, DetailView , CreateView , UpdateView, DeleteView  # ListView - Allows me to list a query set into the database, detailView - brings one record only
 from .models import Post, Comment, Report
 from django.urls import reverse_lazy, reverse
-from .forms import PostForm , CommentForm
+from .forms import PostForm , CommentForm, ReportForm
 from django.http import HttpResponseRedirect
 
 #class views
@@ -27,7 +27,7 @@ class HomeView(ListView):
 class Suggest(ListView):
     queryset = Post.objects.annotate(like_count=Count('likes')).order_by('like_count')
     template_name = 'home.html'
-    context_object_name = 'post_list' # Providing a useful context_object_name is always a good idea
+    context_object_name = 'post_list' 
 
 class PostDetail(DetailView):
     model = Post
@@ -81,6 +81,15 @@ class AddComment(CreateView):
         return super().form_valid(form) 
        
  
+class AddReport(CreateView):
+    model = Report
+    form_class = ReportForm
+    template_name = 'add_report.html'
+    success_url = reverse_lazy('home')
+   
 
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form) 
     
     

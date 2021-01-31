@@ -26,7 +26,7 @@
 
 <h4>Comments </h4>
 {% for comment in post.comments.all %}
-        <hr><br>{{ comment.name }} •
+        <hr><br>{{ comment.author }} •
             {{ comment.date_added }} 
             <br>
             {{ comment.body }}
@@ -38,6 +38,7 @@
     {% if not post.comments.all %}
         0 comments. •  <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> <hr>
     {% else %}
+    <br/><br/><br/>
         <a href="{% url 'add_comment' post.pk %}">Add comment</a><br> 
        
     {% endif %}
@@ -83,12 +84,18 @@
     
     • {{ total_likes }} likes
     
- </form>
+    <br/> <br/> 
+ <div>
+     <a href='{% url "add_report" post.pk %}'>report</a>
+ </div>
 
 <br/>
 <br/>
 <br/>
 
+<form >
+
+</form>
 
 
 
